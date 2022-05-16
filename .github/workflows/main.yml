@@ -12,7 +12,6 @@ on:
 #   DEPLOYMENT_NAME: shop-api-product-service
 
 jobs:
-
   docker:
     name: Build, Publish Docker Image
     runs-on: ubuntu-latest
@@ -34,7 +33,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/shop-api-feedback-service
-
 #   deploy:
 #     name: Deploy to GKE
 #     runs-on: ubuntu-latest
