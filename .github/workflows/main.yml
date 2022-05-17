@@ -40,35 +40,35 @@ jobs:
           run: |
             echo "runing the docker image"
             echo "Testing the nodejs  app endpoints"
-  deploy_gc:
-    name: Deploy to GC
-    runs-on: ubuntu-latest
+  # deploy_gc:
+  #   name: Deploy to GC
+  #   runs-on: ubuntu-latest
 
-    needs: [build]
-    environment: production
+  #   needs: [build]
+  #   environment: production
 
-    permissions:
-      contents: "read"
-      id-token: "write"
+  #   permissions:
+  #     contents: "read"
+  #     id-token: "write"
 
-    steps:
-      - name: checkout repo
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: setup gcloud CLI
-        uses: google-github-actions/setup-gcloud@v0
-        with:
-          project_id: ${{ secrets.GCP_PROJECT }}
+  #     - name: setup gcloud CLI
+  #       uses: google-github-actions/setup-gcloud@v0
+  #       with:
+  #         project_id: ${{ secrets.GCP_PROJECT }}
 
-      - id: "auth"
-        uses: "google-github-actions/auth@v0"
-        with:
-          credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
-      - run: gcloud container clusters get-credentials ${{secrets.GCP_CLUSTERNAME}} --zone us-central1
-      - name: deploy
-        run: |
-          kubectl delete -f deployment.yaml && kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml
-          kubectl get services -o wide
-          kubectl rollout status deployment/admin-service
-          kubectl get deployments
+  #     - id: "auth"
+  #       uses: "google-github-actions/auth@v0"
+  #       with:
+  #         credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
+  #     - run: gcloud container clusters get-credentials ${{secrets.GCP_CLUSTERNAME}} --zone us-central1
+  #     - name: deploy
+  #       run: |
+  #         kubectl delete -f deployment.yaml && kubectl apply -f deployment.yaml
+  #         kubectl apply -f service.yaml
+  #         kubectl get services -o wide
+  #         kubectl rollout status deployment/admin-service
+  #         kubectl get deployments
