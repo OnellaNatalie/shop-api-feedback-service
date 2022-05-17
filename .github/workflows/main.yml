@@ -9,7 +9,7 @@ env:
   GKE_CLUSTER: autopilot-cluster-1
   GAR_LOCATION: us-central1
   GKE_ZONE: us-central1
-  DEPLOYMENT_NAME: shop-api-feedback-service
+  DEPLOYMENT_NAME: feedback-service
 
 jobs:
   docker:
