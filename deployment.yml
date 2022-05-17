@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: feedback-service
+  name: feedback-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: feedback-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: feedback-service
+    spec:
+      containers:
+        - image: onatalie/shop-api-feedback-service
+          name: feedback-service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5004
+          resources: {}
+status: {}
